@@ -80,9 +80,9 @@ class CNNModel(nn.Module):
         
         self.convnet_rref = rpc.remote(connet_wk, ConvNet,args=(device,))
         # setup LSTM locally
-        print(self.convnet_rref.to_here())
+        #print(self.convnet_rref.to_here())
         self.fcnet_rref = rpc.remote(fcnet_wk, FCNet,args=(device,))
-        print(self.fcnet_rref.to_here())
+        #print(self.fcnet_rref.to_here())
 
 
     def forward(self, inputreff):

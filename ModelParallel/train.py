@@ -17,12 +17,12 @@ class Trainer(object):
     def fit(self, epochs):
         for epoch in range(1, epochs + 1):
             train_loss, train_acc = self.train()
-            #test_loss, test_acc = self.evaluate()
+            test_loss, test_acc = self.evaluate()
 
             print(
                 'Epoch: {}/{},'.format(epoch, epochs),
                 'train loss: {}, train acc: {},'.format(train_loss, train_acc),
-                 #'test loss: {}, test acc: {}.'.format(test_loss, test_acc),
+                'test loss: {}, test acc: {}.'.format(test_loss, test_acc),
             )
 
     def train(self):
@@ -38,8 +38,8 @@ class Trainer(object):
                 output = output_ref.to_here()
                 loss = F.cross_entropy(output, target)
 
-                dist_autograd.backward([loss])
-                self.optimizer.step()
+                dist_autograd.backward(context_id,[loss])
+                self.optimizer.step(context_id)
 
                 train_loss.update(loss.item(), data.size(0))
                 train_acc.update(output, target)
