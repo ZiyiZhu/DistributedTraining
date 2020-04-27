@@ -83,7 +83,6 @@ class CNNModel(nn.Module):
         print(self.convnet_rref.to_here())
         self.fcnet_rref = rpc.remote(fcnet_wk, FCNet,args=(device,))
         print(self.fcnet_rref.to_here())
-        print('CNN model constructed: ' + 'owner')
 
 
     def forward(self, inputreff):
